@@ -1,3 +1,3 @@
 function init(event){
-event.player.message("Loaded!");
+event.player.message("Тест Unicode короче");
 }
