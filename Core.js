@@ -7,6 +7,8 @@ var ConfigPath = API.getWorldDir().getAbsolutePath() + "\\scripts\\config\\";
 var ConfigFolder = new File(ConfigPath);
 var env = this;
 
+var NBTTagCompound = Java.type("net.minecraft.nbt.NBTTagCompound");
+
 var InventoryBasic = Java.type("net.minecraft.inventory.InventoryBasic");
 
 var JFU = Java.type("org.apache.commons.io.FileUtils");
@@ -117,6 +119,7 @@ function chat(event){
 			try{
 			Utils.downloadFile("https://raw.githubusercontent.com/slava110/ScriptingCore/master/Scripts/"+args[1]+".js", new File(ScriptsPath + args[1] + ".js"));
 			ScriptController.playerScripts.getScripts()[0].scripts.add(args[1].toLowerCase() + ".js");
+			ScriptController.setPlayerScripts(ScriptController.playerScripts.writeToNBT(new NBTTagCompound()));
 			player.message("&2Script &3" + args[1] + "&2succefully loaded");
 			} catch(e){
 				player.message("&cError on script install process");
