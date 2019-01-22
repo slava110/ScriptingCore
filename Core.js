@@ -137,6 +137,25 @@ function chat(event){
 			
 			break;
 			
+			case '#uninstall':
+			if(!args[1]) return;
+			try{
+			file = new File(ScriptsPath + args[1] + ".js");
+			file.delete();
+			ScriptController.playerScripts.getScripts()[0].scripts.remove(args[1].toLowerCase() + ".js");
+			//Скрипт %s успешно деинсталлирован
+			player.message("&2\u0421\u043a\u0440\u0438\u043f\u0442 &3" + args[1] + "&2 \u0443\u0441\u043f\u0435\u0448\u043d\u043e \u0434\u0435\u0438\u043d\u0441\u0442\u0430\u043b\u043b\u0438\u0440\u043e\u0432\u0430\u043d");
+			ScriptController.setPlayerScripts(ScriptController.playerScripts.writeToNBT(new NBTTagCompound()));
+			ScriptController.loadCategories();
+			ScriptController.loadPlayerScripts();
+			} catch(e){
+				//Во время деинсталляции скрипта произошла ошибка
+				player.message("&c\u0412\u043e \u0432\u0440\u0435\u043c\u044f \u0434\u0435\u0438\u043d\u0441\u0442\u0430\u043b\u043b\u044f\u0446\u0438\u0438 \u0441\u043a\u0440\u0438\u043f\u0442\u0430 \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043e\u0448\u0438\u0431\u043a\u0430");
+			}
+			return;
+			
+			break;
+			
 			//Plugin commands
 			default:
 			for(var i = 0; i < Plugins.length; i++){
