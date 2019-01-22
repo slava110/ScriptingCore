@@ -117,7 +117,7 @@ function chat(event){
 			try{
 			Utils.downloadFile("https://raw.githubusercontent.com/slava110/ScriptingCore/master/Scripts/"+args[1]+".js", new File(ScriptsPath + args[1] + ".js"));
 			ScriptController.playerScripts.getScripts()[0].scripts.add(args[1].toLowerCase() + ".js");
-			player.message("&2Скрипт &3" + args[1] + "&2успешно загружен");
+			player.message("&2Script &3" + args[1] + "&2succefully loaded");
 			} catch(e){
 				player.message("&cError on script install process");
 			}
