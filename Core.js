@@ -27,7 +27,7 @@ var Charset = Java.type("java.nio.charset.StandardCharsets").UTF_8;
 var ScriptedItems = [];
 
 var Plugins = [];
-var Commands = ["#plugins", "#help"];
+var Commands = ["#plugins", "#help", "#install", "#uninstall"];
 
 var Core = {
 	loadData: function(id){
@@ -86,7 +86,8 @@ function chat(event){
 				break;
 				
 				case 'list':
-				player.message("&7===&6Plugins&7===");
+				//Плагины
+				player.message("&7===&6\u041f\u043b\u0430\u0433\u0438\u043d\u044b&7===");
 				for(var i = 0; i < Plugins.length; i++)
 					if(Plugins[i].enabled)
 						player.message("&7-&2 " + Plugins[i].name);
@@ -100,17 +101,21 @@ function chat(event){
 				splugin = env[args[2]];
  				player.message("&7===&6"+splugin.name+"&7===");
 				if(splugin.version)
-					player.message("&7Version: &6" + splugin.version);
+					//Версия: %s
+					player.message("&7\u0412\u0435\u0440\u0441\u0438\u044f: &6" + splugin.version);
 				if(splugin.desc)
-					player.message("&7Description: &6" + splugin.desc);
+					//Описание: %s
+					player.message("&7\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435: &6" + splugin.desc);
 				return;
 				break;
-				default: player.message("&cAvailable commands: reload, list, info"); return true;
+				//Доступные подкоманды
+				default: player.message("&c\u0414\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0435 \u043f\u043e\u0434\u043a\u043e\u043c\u0430\u043d\u0434\u044b: reload, list, info"); return true;
 			}
 			break;
 			
 			case '#help':
-			player.message("&7Available command: &6" + Commands.join("&7, &6") + "&7.");
+			//Доступные команды
+			player.message("&7\u0414\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0435 \u043a\u043e\u043c\u0430\u043d\u0434\u044b: &6" + Commands.join("&7, &6") + "&7.");
 			return;
 			break;
 			
@@ -119,12 +124,14 @@ function chat(event){
 			try{
 			Utils.downloadFile("https://raw.githubusercontent.com/slava110/ScriptingCore/master/Scripts/"+args[1]+".js", new File(ScriptsPath + args[1] + ".js"));
 			ScriptController.playerScripts.getScripts()[0].scripts.add(args[1].toLowerCase() + ".js");
-			player.message("&2Script &3" + args[1] + "&2 succefully loaded");
+			//Скрипт %s успешно установлен
+			player.message("&2\u0421\u043a\u0440\u0438\u043f\u0442 &3" + args[1] + "&2 \u0443\u0441\u043f\u0435\u0448\u043d\u043e \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d");
 			ScriptController.setPlayerScripts(ScriptController.playerScripts.writeToNBT(new NBTTagCompound()));
 			ScriptController.loadCategories();
 			ScriptController.loadPlayerScripts();
 			} catch(e){
-				player.message("&cError on script install process");
+				//Во время установки скрипта произошла ошибка
+				player.message("&c\u0412\u043e \u0432\u0440\u0435\u043c\u044f \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 \u0441\u043a\u0440\u0438\u043f\u0442\u0430 \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043e\u0448\u0438\u0431\u043a\u0430");
 			}
 			return;
 			
@@ -136,7 +143,8 @@ function chat(event){
 				if(Plugins[i]["commandHandler"] && Plugins[i].enabled && Plugins[i].commandHandler(event, args)) return;
 			}
 		}
-		player.message("&cCommand not found!");
+		//Команда не найдена
+		player.message("&c\u041a\u043e\u043c\u0430\u043d\u0434\u0430 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u0430!");
 	}
 		
 }
