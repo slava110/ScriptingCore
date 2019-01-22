@@ -141,6 +141,7 @@ function chat(event){
 			if(!args[1]) return;
 			try{
 			file = new File(ScriptsPath + args[1] + ".js");
+			if(!file.isFile()) throw "NotFound";
 			file.delete();
 			ScriptController.playerScripts.getScripts()[0].scripts.remove(args[1].toLowerCase() + ".js");
 			//Скрипт %s успешно деинсталлирован
