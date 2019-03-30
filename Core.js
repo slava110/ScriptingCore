@@ -98,7 +98,7 @@ function chat(event){
 				
 				case 'info':
 				if(!args[2] || !Core.requirePlugin(args[2])) {player.message("&cPlugin not found!"); return};
-				splugin = env[args[2]];
+				var splugin = env[args[2]];
  				player.message("&7===&6"+splugin.name+"&7===");
 				if(splugin.version)
 					//Версия: %s
@@ -224,7 +224,7 @@ var Utils = {
 		return player.rayTraceBlock(4.0, true, false).getBlock();
 	},
 	lookEntity: function(player){
-		entities = player.rayTraceEntities(4.0, true, false);
+		var entities = player.rayTraceEntities(4.0, true, false);
 		if(entities) return player.rayTraceEntities(4.0, true, false)[0];
 		return;
 	},
