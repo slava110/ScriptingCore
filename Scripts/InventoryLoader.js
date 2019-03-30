@@ -31,7 +31,7 @@ var InventoryLoader = {
 		player.getStoreddata().remove("inventory-" + invName);
 	},
 	commandHandler: function(event, args){
-		player = event.player;
+		var player = event.player;
 		switch(args[0]){
 			case '#inventory':
 			case '#inv':
