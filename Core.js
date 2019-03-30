@@ -140,7 +140,7 @@ function chat(event){
 			case '#uninstall':
 			if(!args[1]) return;
 			try{
-			file = new File(ScriptsPath + args[1] + ".js");
+			var file = new File(ScriptsPath + args[1] + ".js");
 			if(!file.isFile()) throw "NotFound";
 			file.delete();
 			ScriptController.playerScripts.getScripts()[0].scripts.remove(args[1].toLowerCase() + ".js");
