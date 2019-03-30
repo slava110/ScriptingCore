@@ -170,7 +170,7 @@ function chat(event){
 }
 //----------------Init----------------
 function init(event){
-	data = API.getIWorld(0).getTempdata();
+	var data = API.getIWorld(0).getTempdata();
 	//if(!data.has("loaded")){
 	//	
 	//	data.put("loaded", "yup");
@@ -189,7 +189,7 @@ function keyPressed(event){
 
 var Utils = {
 	readFile: function(stringPath){
-		path = Paths.get(stringPath);
+		var path = Paths.get(stringPath);
 		try{
 			lines = Files.readAllLines(path, Charset);
 			return lines;
